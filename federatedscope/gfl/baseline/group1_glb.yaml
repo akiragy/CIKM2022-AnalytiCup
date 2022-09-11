@@ -1,0 +1,49 @@
+use_gpu: False
+device: 0
+early_stop:
+  delta: 0.0
+  patience: 500
+  improve_indicator_mode: best
+  the_smaller_the_better: False
+federate:
+  mode: 'standalone'
+  make_global_eval: False
+  total_round_num: 200
+  share_local_model: False
+  client_num: 10
+  method: gcflplus
+gcflplus:
+  EPS_1: 0.05
+  EPS_2: 0.2
+  seq_length: 5
+  standardize: False
+data:
+  root: data_group1/
+  type: cikmcup
+  batch_size: 64
+  shuffle: True
+  num_workers: 0
+personalization:
+  local_param: ['encoder_atom', 'encoder', 'clf', 'norms']
+train:
+  batch_or_epoch: epoch
+  local_update_steps: 1
+  optimizer:
+    type: SGD
+    weight_decay: 0.0005
+trainer:
+  type: graphminibatch_trainer
+model:
+  type: gin
+  task: graph
+  hidden: 128
+  dropout: 0.0
+eval:
+  freq: 20
+  metrics: ['imp_ratio']
+  report: ['avg']
+  best_res_update_round_wise_key: val_imp_ratio
+  count_flops: False
+  split: ['test', 'val']
+  base: 0.
+outdir: exp/group1

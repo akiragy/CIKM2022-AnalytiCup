@@ -1,0 +1,40 @@
+client_1:
+  model:
+    out_channels: 1
+    task: graphRegression
+  criterion:
+    type: MSELoss
+  train:
+    optimizer:
+      lr: 0.05
+  eval:
+    metrics: ['mse', 'imp_ratio']
+    base: 0.059199
+client_2:
+  model:
+    out_channels: 10
+    task: graphRegression
+  criterion:
+    type: MSELoss
+  train:
+    optimizer:
+      lr: 0.05
+  grad:
+    grad_clip: 1.0
+  eval:
+    metrics: ['mse', 'imp_ratio']
+    base: 0.007083
+client_3:
+  model:
+    out_channels: 12
+    task: graphRegression
+  criterion:
+    type: MSELoss
+  train:
+    optimizer:
+      lr: 0.03
+  grad:
+    grad_clip: 1.0
+  eval:
+    metrics: ['mse', 'imp_ratio']
+    base: 0.004389
