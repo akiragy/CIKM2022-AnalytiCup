@@ -24,3 +24,5 @@ Brief introduction of the developed algorithm:
 > We use GCFL+ for group1, FedAvg with FedProx constraint for group2 and GCFL+ for group3.
 > The base model for each client is GIN, key hyperparameters are the number of layers and embedding size of GIN, learning rate and gradient clipping value for optimizer. 
 > We choose the round with the highest val_imp_ratio for each client to output the result, instead of using the result of the last round.
+> In particular, for client 4, since there are only 34 test samples, the baseline predicts 6 of them wrong, so each sample is very critical (each sample will have an impact of 1.28 points on the final result). 
+> Based on the model prediction, we guess the labels of some samples through several submissions. Therefore, the result for client 4 is not just given by model,  it has some manual modifications.
